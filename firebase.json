@@ -1,0 +1,35 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "menofia-military",
+          "appId": "1:578577084601:android:952fb0c91dae442ab5ab68",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "menofia-military",
+          "configurations": {
+            "android": "1:578577084601:android:952fb0c91dae442ab5ab68",
+            "ios": "1:578577084601:ios:35bb9797212fc3e4b5ab68"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "578577084601",
+    "project_id": "menofia-military",
+    "storage_bucket": "menofia-military.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578577084601:android:952fb0c91dae442ab5ab68",
+        "android_client_info": {
+          "package_name": "com.example.menofia_military"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm4syz9ywyu3lcmxadTEImeVKzb77WnVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
