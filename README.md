@@ -1,16 +1,32 @@
-# menofia_military
+# Menofia Military Attendance Application
 
-A new Flutter project.
+## 📌 Description
 
-## Getting Started
+Menofia Military Attendance is a mobile application designed to register and track students' attendance during the mandatory 15-day military education period at Menofia University. The application leverages a QR code system for accurate and secure attendance logging and follows a professional, scalable software architecture suitable for production environments.
 
-This project is a starting point for a Flutter application.
+## 🛠 What I Have Used
 
-A few resources to get you started if this is your first Flutter project:
+- **Flutter**: for building the cross-platform mobile application.
+- **Clean Architecture**: to separate concerns and improve testability and maintainability.
+- **Firebase Authentication**: for secure login and user role management.
+- **Firebase Firestore Database**: for real-time storage and retrieval of student data and attendance records.
+- **QR Code Generator**: to create unique attendance codes for students.
+- **QR Code Scanner**: to allow administrators to validate and log attendance using the student’s QR code.
+- **Dio**: as the HTTP client for remote communication.
+- **Shared Preferences**: for local data persistence and user session management.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ✅ Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Register and track student attendance during the 15-day military training.
+- Admin role with authority to scan student QR codes and log attendance.
+- Each student receives a unique QR code to represent their attendance.
+- Student attendance reports available for tracking performance and compliance.
+
+## 🎥 Demo Video
+
+
+
+```markdown
+<video src="project_demo/videos/menofia_military_demo.mp4" controls style="width:100%; max-width:800px;">
+  Your browser does not support the video tag.
+</video>
