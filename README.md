@@ -26,7 +26,5 @@ Menofia Military Attendance is a mobile application designed to register and tra
 
 
 
-```markdown
-<video src="project_demo/videos/menofia_military_demo.mp4" controls style="width:100%; max-width:800px;">
-  Your browser does not support the video tag.
-</video>
+[Watch demo video](project_demo/videos/menofia_military_demo.mp4)
+
