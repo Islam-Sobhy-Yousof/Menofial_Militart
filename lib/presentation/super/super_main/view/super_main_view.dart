@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:menofia_military/app/core/local_storage/local_storage_helper.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_app_bar.dart';
-import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/values_manager.dart';
-import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_controller.dart';
+import 'package:menofia_military/presentation/super/super_main/controller/super_main_view_controller.dart';
 
-class StudentMainView extends StatelessWidget {
-  StudentMainView({super.key});
+class SuperMainView extends StatelessWidget {
+  SuperMainView({super.key});
 
-  final controller = StudentMainViewController.instance;
+  final controller = SuperMainViewController.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,21 +49,21 @@ class StudentMainView extends StatelessWidget {
             destinations: [
               NavigationDestination(
                 icon: Icon(
-                  Iconsax.home,
+                  Iconsax.chart,
                 ),
-                label: 'الرئيسية',
+                label: StringsManager.superAttendanceReportPage,
               ),
               NavigationDestination(
                 icon: Icon(
                   Iconsax.book,
                 ),
-                label: 'الإمتحانات',
+                label: StringsManager.exams,
               ),
               NavigationDestination(
                 icon: Icon(
-                  Iconsax.scan_barcode,
+                  Iconsax.scan,
                 ),
-                label: 'رمز الحضور',
+                label: StringsManager.superScanAttendacneQRPage,
               ),
             ],
           )),

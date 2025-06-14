@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menofia_military/app/app_constants.dart';
 import 'package:menofia_military/app/extensions.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -46,16 +46,4 @@ CustomSnackBar _getCustomSnackBar(
   );
 }
 
-String convertToCountableNumber({required int number}) {
-  if (number == 0) {
-    return StringsManager.noStudentsData;
-  }
-  if (number == 1) {
-    return StringsManager.singleStudentData;
-  }
-  if (number == 2) {
-    return StringsManager.pairOfStudnetsData;
-  }
 
-  return "${number.toString().toArabicNumbers()} ${StringsManager.multipleStudnetsData}";
-}

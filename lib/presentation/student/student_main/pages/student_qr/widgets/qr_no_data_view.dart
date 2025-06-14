@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/styles_manager.dart';
 

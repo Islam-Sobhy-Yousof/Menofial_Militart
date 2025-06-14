@@ -7,7 +7,7 @@ import 'package:menofia_military/domain/usecases/student_login_usecase.dart';
 import 'package:menofia_military/presentation/common/utils/helpers/show_dialog.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_progress_indicator.dart';
 import 'package:menofia_military/presentation/common/widgets/states/custom_popup.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/assets_manager.dart';
 import 'package:menofia_military/presentation/resources/routes_manager.dart';
 

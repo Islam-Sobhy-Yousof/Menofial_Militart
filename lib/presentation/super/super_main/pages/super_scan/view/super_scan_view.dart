@@ -1,3 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:menofia_military/presentation/resources/values_manager.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_scan/controller/super_scan_view_controller.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+
+class SuperScanView extends StatelessWidget {
+  SuperScanView({super.key});
+  final controller = SuperScanViewController.instance;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppPadding.p8,
+        vertical: AppPadding.p20,
+      ),
+      child: MobileScanner(
+          controller: controller.mobileScannerController,
+          onDetect: (results) {
+            controller.onDetect(results, context);
+          }),
+    );
+  }
+}
+
+
+/*
+
+
+
+
+
+
+
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -5,7 +39,7 @@ import 'package:menofia_military/app/app_constants.dart';
 import 'package:menofia_military/app/di.dart';
 import 'package:menofia_military/app/helper_functions.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/super/super_main/pages/super_scan/view_model/super_scan_attendance_view_model.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -105,6 +139,17 @@ class _SuperScanViewState extends State<SuperScanView> {
 
 /*
  
+
+
+*/
+
+
+
+
+
+
+
+
 
 
 */

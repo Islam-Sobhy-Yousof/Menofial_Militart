@@ -8,12 +8,15 @@ import 'package:menofia_military/presentation/student/student_main/controller/st
 import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_controller.dart';
 import 'package:menofia_military/presentation/student/student_main/pages/student_qr/controller/student_qr_generator_bindings.dart';
 import 'package:menofia_military/presentation/student/student_main/view/student_main_view.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/splash/views/splash_view.dart';
 import 'package:menofia_military/presentation/super/super_login/controller/super_login_bindings.dart';
 import 'package:menofia_military/presentation/super/super_login/view/super_login_view.dart';
+import 'package:menofia_military/presentation/super/super_main/controller/super_main_view_bindings.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/controller/super_attendance_view_bindings.dart';
 import 'package:menofia_military/presentation/super/super_main/pages/super_attendance_details/view/super_attendance_details_view.dart';
-import 'package:menofia_military/presentation/super/super_main/super_main_view.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_scan/controller/super_scan_view_bindings.dart';
+import 'package:menofia_military/presentation/super/super_main/view/super_main_view.dart';
 
 abstract class Routes {
   static const String splashRoute = "/";
@@ -59,7 +62,12 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.superMainRoute,
-      page: () => const SuperMainView(),
+      page: () =>  SuperMainView(),
+      bindings: [
+        SuperAttendanceViewBindings(),
+        SuperScanViewBindings(),
+        SuperMainViewBindings(),
+      ]
     ),
     GetPage(
       name: Routes.superAttendanceDetails,

@@ -4,8 +4,9 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/route_manager.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_rounded_container.dart';
+import 'package:menofia_military/presentation/common/widgets/inputs/custom_form_field.dart';
 import 'package:menofia_military/presentation/common/widgets/make_space.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/assets_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/routes_manager.dart';
@@ -15,7 +16,7 @@ import 'package:menofia_military/presentation/super/super_login/controller/super
 
 class SuperLoginView extends StatelessWidget {
   SuperLoginView({super.key});
-  final controller = Get.find<SuperLoginController>();
+  final controller = SuperLoginController.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,26 +50,34 @@ class SuperLoginView extends StatelessWidget {
               const MakeSpace(
                 height: AppSize.s24,
               ),
-              Obx(() => CustomFormField(
-                    onChanged: controller.onChangePassword,
-                    errorText: controller.passwordErrorText.value,
-                    obscureText: true,
-                    labelText: StringsManager.superPasswordField,
-                    controller: controller.passwordController,
-                    keyboardType: TextInputType.text,
-                    prefixIcon: Iconsax.password_check,
-                  )),
+              Obx(
+                () => CustomFormField(
+                  onPressed: controller.onShowPasswordIconPressed,
+                  onChanged: controller.onChangePassword,
+                  errorText: controller.passwordErrorText.value,
+                  obscureText: controller.toggelPassword.value,
+                  labelText: StringsManager.superPasswordField,
+                  controller: controller.passwordController,
+                  keyboardType: TextInputType.text,
+                  prefixIcon: Iconsax.password_check,
+                  suffixIcon: controller.toggelPassword.value
+                      ? Iconsax.eye_slash
+                      : Iconsax.eye,
+                ),
+              ),
               const MakeSpace(
                 height: AppSize.s24,
               ),
               Obx(() => SizedBox(
                     width: AppSize.sinf,
                     child: ElevatedButton(
-                      onPressed: controller.areAllInputsValid.value
-                          ? () => controller.login(context: context)
-                          : null,
+                      onPressed: () {
+                        Get.offAllNamed(
+                          Routes.superMainRoute,
+                        );
+                      },
                       child: Text(
-                        StringsManager.login,
+                        '${StringsManager.login} ${controller.areAllInputsValid.value}',
                         style: Theme.of(context).textTheme.bodyLarge?.apply(
                               color: ColorsManager.white,
                             ),
@@ -101,3 +110,11 @@ class SuperLoginView extends StatelessWidget {
     );
   }
 }
+
+
+/**
+ * 
+ * controller.areAllInputsValid.value
+                          ? () => controller.login(context: context)
+                          : null
+ */

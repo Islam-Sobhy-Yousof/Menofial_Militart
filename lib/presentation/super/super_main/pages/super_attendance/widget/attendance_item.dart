@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:menofia_military/app/extensions.dart';
 import 'package:menofia_military/app/helper_functions.dart';
 import 'package:menofia_military/domain/models/models.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/fonts_manager.dart';
 import 'package:menofia_military/presentation/resources/styles_manager.dart';
 import 'package:menofia_military/presentation/resources/values_manager.dart';
-import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/view/widget/attendance_item_text.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/widget/attendance_item_text.dart';
 
 class AttendanceItem extends StatelessWidget {
   final Attendance item;
@@ -50,9 +51,9 @@ class AttendanceItem extends StatelessWidget {
               date: item.dates,
             ),
             AttendanceItemText(
-              date: convertToCountableNumber(
-                number: item.studentsPresent.length,
-              ),
+              date:
+                item.studentsPresent.length.convertToCountableNumber(),
+              
               color: ColorsManager.lightGrey,
             ),
             GestureDetector(

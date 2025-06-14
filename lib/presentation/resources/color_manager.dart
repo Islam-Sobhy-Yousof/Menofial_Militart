@@ -10,6 +10,7 @@ abstract class ColorsManager {
   static const Color shadow1 =  Colors.black26;
   static const Color buttonText =   Color(0xff737477);
   static const Color button =  Color(0xffED9728);
+  static const Color chipColor = Colors.amberAccent;
 
 
   // new colors

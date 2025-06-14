@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/values_manager.dart';
 import 'package:menofia_military/presentation/student/student_main/pages/student_qr/controller/student_qr_generator_controller.dart';

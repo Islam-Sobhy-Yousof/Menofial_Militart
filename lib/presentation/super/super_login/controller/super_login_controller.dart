@@ -8,7 +8,7 @@ import 'package:menofia_military/domain/usecases/super_login_usecase.dart';
 import 'package:menofia_military/presentation/common/utils/helpers/show_dialog.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_progress_indicator.dart';
 import 'package:menofia_military/presentation/common/widgets/states/custom_popup.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/assets_manager.dart';
 import 'package:menofia_military/presentation/resources/routes_manager.dart';
 
@@ -16,6 +16,7 @@ class SuperLoginController extends GetxController {
   static SuperLoginController get instance => Get.find();
   final isLoading = false.obs;
   final areAllInputsValid = false.obs;
+  final toggelPassword = true.obs;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -26,6 +27,10 @@ class SuperLoginController extends GetxController {
   SuperLoginController({
     required SuperLoginUsecase superLogingUsecase,
   }) : _superLoginUsecase = superLogingUsecase;
+
+  void onShowPasswordIconPressed() {
+    toggelPassword.value = !toggelPassword.value;
+  }
 
   void login({required BuildContext context}) async {
     if (!areAllInputsValid.value) return;
@@ -47,6 +52,7 @@ class SuperLoginController extends GetxController {
     isLoading.value = false;
 
     response.fold((failure) {
+      print('islam the failure is : ${failure.code}');
       AppDialogs.showCustomDialog(
         dismissOnTouchOutside: true,
         context: context,

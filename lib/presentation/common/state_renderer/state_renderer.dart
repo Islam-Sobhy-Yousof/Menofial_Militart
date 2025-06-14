@@ -6,7 +6,7 @@ import 'package:menofia_military/presentation/common/state_renderer/state_render
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer_widgets/retry_button.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer_widgets/state_renderer_column.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer_widgets/state_renderer_message.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/assets_manager.dart';
 
 enum StateRendererType {

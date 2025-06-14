@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menofia_military/app/app_constants.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 
 abstract class FlowState {
   StateRendererType get stateType;

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:menofia_military/app/app_constants.dart';
 import 'package:menofia_military/data/network/network_constants.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 
 extension NonNullString on String? {
   String orEmpty() {
@@ -32,6 +33,23 @@ extension ArabicDigitsFormatter on String {
       result += index != -1 ? eastern[index] : char;
     }
     return result;
+  }
+}
+
+
+extension ConvertIntToCountable on int {
+  String convertToCountableNumber() {
+    if (this == 0) {
+      return StringsManager.noStudentsData;
+    }
+    if (this == 1) {
+      return StringsManager.singleStudentData;
+    }
+    if (this == 2) {
+      return StringsManager.pairOfStudnetsData;
+    }
+
+    return "${toString().toArabicNumbers()} ${StringsManager.multipleStudnetsData}";
   }
 }
 

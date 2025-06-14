@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:menofia_military/app/core/local_storage/local_storage_helper.dart';
 import 'package:menofia_military/presentation/resources/strings_manager.dart';
-import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/routes_manager.dart';
-import 'package:menofia_military/presentation/student/student_main/pages/student_exams/view/student_exams.dart';
-import 'package:menofia_military/presentation/student/student_main/pages/student_qr/view/student_qr_genrator_view.dart';
+import 'package:menofia_military/presentation/super/super_exams/view/super_exams_view.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/view/super_attendance.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_scan/view/super_scan_view.dart';
 
-class StudentMainViewController extends GetxController {
+class SuperMainViewController extends GetxController {
   final _localStorageHelper = Get.find<LocalStorageHelper>();
-  static StudentMainViewController get instance => Get.find();
+  static SuperMainViewController get instance => Get.find();
 
   final List<Widget> pages = [
-    Container(
-      color: Colors.redAccent,
-    ),
-
-    StudentExams(),
-// StudentQrGenratorView(),
-
-    StudentQrGenratorView(),
+    SuperAttendance(),
+    SuperExamsView(),
+    SuperScanView(),
   ];
 
   late final List<String> pagesTitles;
@@ -38,9 +33,9 @@ class StudentMainViewController extends GetxController {
   void onInit() {
     final studentName = _localStorageHelper.getStudentName();
     pagesTitles = [
-      '${StringsManager.hiMessage} $studentName',
+      StringsManager.superAttendanceReportPage,
       StringsManager.exams,
-      StringsManager.studentQrGenerator,
+      StringsManager.studentsAttendance,
     ];
     super.onInit();
   }

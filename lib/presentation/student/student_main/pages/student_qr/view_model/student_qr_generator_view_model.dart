@@ -5,7 +5,7 @@ import 'package:menofia_military/app/app_prefs.dart';
 import 'package:menofia_military/presentation/base/base_view_model.dart';
 import 'package:menofia_military/presentation/common/data_classes/freezed_data_class.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 
 class StudentQrGeneratorViewModel extends BaseViewModel
     with StudentQrGeneratorViewModelInputs, StudentQrGeneratorViewModelOutputs {

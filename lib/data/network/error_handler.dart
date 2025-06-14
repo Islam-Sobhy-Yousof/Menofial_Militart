@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:menofia_military/data/network/failure.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 
 class ErrorHandler implements Exception {
   late Failure failure;
@@ -25,25 +25,25 @@ Failure _handleGenericFirebaseError(FirebaseException error) {
 
 Failure _handleFirebaseAuthError(FirebaseAuthException error) {
   switch (error.code) {
-    case StringsManager.firebaseInvalidEmailCode:
+    case FirebaseErrorMessages.firebaseInvalidEmailCode:
       return DataSource.firebaseInvalidEmail.getFailure();
-    case StringsManager.firebaseUserDisabledCode:
+    case FirebaseErrorMessages.firebaseUserDisabledCode:
       return DataSource.firebaseUserDisabled.getFailure();
-    case StringsManager.firebaseUserNotFoundCode:
+    case FirebaseErrorMessages.firebaseUserNotFoundCode:
       return DataSource.firebaseUserNotFound.getFailure();
-    case StringsManager.firebaseWrongPasswordCode:
+    case FirebaseErrorMessages.firebaseWrongPasswordCode:
       return DataSource.firebaseWrongPassword.getFailure();
-    case StringsManager.firebaseEmailAlreadyInUseCode:
+    case FirebaseErrorMessages.firebaseEmailAlreadyInUseCode:
       return DataSource.firebaseEmailAlreadyInUse.getFailure();
-    case StringsManager.firebaseWeakPasswordCode:
+    case FirebaseErrorMessages.firebaseWeakPasswordCode:
       return DataSource.firebaseWeakPassword.getFailure();
-    case StringsManager.firebaseOperationNotAllowedCode:
+    case FirebaseErrorMessages.firebaseOperationNotAllowedCode:
       return DataSource.firebaseOperationNotAllowed.getFailure();
-    case StringsManager.firebaseTooManyRequestsCode:
+    case FirebaseErrorMessages.firebaseTooManyRequestsCode:
       return DataSource.firebaseTooManyRequests.getFailure();
-    case StringsManager.firebaseNetworkErrorCode:
+    case FirebaseErrorMessages.firebaseNetworkErrorCode:
       return DataSource.firebaseNetworkError.getFailure();
-    case StringsManager.firebaseInvalidcredentialsCode:
+    case FirebaseErrorMessages.firebaseInvalidcredentialsCode:
       return DataSource.firebaseInvalidcredentialsCode.getFailure();
     default:
       return Failure(
@@ -146,4 +146,21 @@ class ResponseCode {
   static const int firebaseOperationNotAllowed = -18;
   static const int firebaseUnknownError = -19;
   static const int firebaseGenericError = -20;
+}
+
+
+
+abstract class FirebaseErrorMessages {
+  // Firebase Auth Error Codes
+  static const String firebaseInvalidEmailCode = 'invalid-email';
+  static const String firebaseUserDisabledCode = 'user-disabled';
+  static const String firebaseUserNotFoundCode = 'user-not-found';
+  static const String firebaseWrongPasswordCode = 'wrong-password';
+  static const String firebaseEmailAlreadyInUseCode = 'email-already-in-use';
+  static const String firebaseWeakPasswordCode = 'weak-password';
+  static const String firebaseOperationNotAllowedCode = 'operation-not-allowed';
+  static const String firebaseTooManyRequestsCode = 'too-many-requests';
+  static const String firebaseNetworkErrorCode = 'network-request-failed';
+  static const String firebaseInvalidcredentialsCode = 'invalid-credential';
+
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_progress_indicator.dart';
 import 'package:menofia_military/presentation/common/widgets/make_space.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/values_manager.dart';
 
 class CustomPopup extends StatelessWidget {

@@ -6,9 +6,10 @@ import 'package:lottie/lottie.dart';
 import 'package:menofia_military/presentation/common/utils/helpers/helper_functions.dart';
 import 'package:menofia_military/presentation/common/utils/helpers/show_dialog.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_rounded_container.dart';
+import 'package:menofia_military/presentation/common/widgets/inputs/custom_form_field.dart';
 import 'package:menofia_military/presentation/common/widgets/make_space.dart';
 import 'package:menofia_military/presentation/common/widgets/states/custom_popup.dart';
-import 'package:menofia_military/presentation/resources/app_strings.dart';
+import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/resources/assets_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
 import 'package:menofia_military/presentation/resources/routes_manager.dart';
@@ -102,41 +103,4 @@ class StudentLoginView extends StatelessWidget {
   }
 }
 
-class CustomFormField extends StatelessWidget {
-  const CustomFormField({
-    super.key,
-    this.prefixIcon = Iconsax.user,
-    this.obscureText = false,
-    this.labelText = StringsManager.studentIDField,
-    this.onChanged,
-    this.keyboardType = TextInputType.emailAddress,
-    this.errorText,
-    this.validator,
-    required this.controller,
-  });
-  final IconData prefixIcon;
-  final TextInputType keyboardType;
-  final TextEditingController controller;
-  final String labelText;
-  final void Function(String?)? onChanged;
-  final FormFieldValidator<String>? validator;
-  final bool obscureText;
-  final String? errorText;
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      validator: validator,
-      controller: controller,
-      obscureText: obscureText,
-      onChanged: onChanged,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        errorText: errorText,
-        prefixIcon: Icon(
-          prefixIcon,
-        ),
-        labelText: labelText,
-      ),
-    );
-  }
-}
+

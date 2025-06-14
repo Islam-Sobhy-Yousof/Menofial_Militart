@@ -1,81 +1,155 @@
 import 'package:flutter/material.dart';
-import 'package:menofia_military/app/di.dart';
-import 'package:menofia_military/data/data_sources/remote_data_source.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/route_manager.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:lottie/lottie.dart';
+import 'package:menofia_military/app/extensions.dart';
 import 'package:menofia_military/domain/models/models.dart';
-import 'package:menofia_military/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:menofia_military/presentation/common/utils/helpers/show_dialog.dart';
+import 'package:menofia_military/presentation/common/widgets/custom_chip.dart';
 import 'package:menofia_military/presentation/common/widgets/custom_progress_indicator.dart';
+import 'package:menofia_military/presentation/common/widgets/custom_rounded_container.dart';
+import 'package:menofia_military/presentation/common/widgets/make_space.dart';
+import 'package:menofia_military/presentation/common/widgets/states/custom_full_state.dart';
+import 'package:menofia_military/presentation/resources/assets_manager.dart';
 import 'package:menofia_military/presentation/resources/color_manager.dart';
-import 'package:menofia_military/presentation/resources/routes_manager.dart';
-import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/view/widget/attendance_item.dart';
-import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/view/widget/no_report_to_view.dart';
-import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/view_modle/super_attendance_view_model.dart';
-import 'package:menofia_military/presentation/super/super_main/pages/super_scan/view_model/super_scan_attendance_view_model.dart';
+import 'package:menofia_military/presentation/resources/values_manager.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_attendance/controller/super_attendance_view_controller.dart';
 
-class SuperAttendanceView extends StatefulWidget {
-  const SuperAttendanceView({super.key});
+class SuperAttendance extends StatefulWidget {
+  SuperAttendance({super.key});
 
   @override
-  State<SuperAttendanceView> createState() => _SuperAttendanceViewState();
+  State<SuperAttendance> createState() => _SuperAttendanceState();
 }
 
-class _SuperAttendanceViewState extends State<SuperAttendanceView> {
-  final SuperAttendanceViewModel _superAttendanceViewModel =
-      instance<SuperAttendanceViewModel>();
-  void _bind() {
-    _superAttendanceViewModel.start();
-  }
-
-  void _onTap() {
-    Navigator.pushNamed(
-      context,
-      Routes.superAttendanceDetails,
-    );
+class _SuperAttendanceState extends State<SuperAttendance> {
+  final controller = SuperAttendanceViewController.instance;
+  void fetchStudentsAttendanceReport() async {
+    await controller.fetchStudentsAttendanceReport();
   }
 
   @override
   void initState() {
-    _bind();
+    fetchStudentsAttendanceReport();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _getContentWidget();
-  }
-
-  Widget _getContentWidget() {
-    return Center(
-      child: StreamBuilder<AttendanceReportObject>(
-        stream: _superAttendanceViewModel.attendanceReportOutput,
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return CustomProgressIndicator();
-          }
-          final data = snapshot.data!.attendanceList;
-          if(data.isEmpty){
-            return NoReportToView();
-          }
-          return ListView.builder(
-            padding: const EdgeInsets.all(12),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: _onTap,
-                child: AttendanceItem(
-                  item: data[index],
-                  onTap: _onTap,
-                ),
-              );
-            },
-          );
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await controller.fetchStudentsAttendanceReport();
         },
+        child: Obx(
+          () => controller.isLoading.value
+              ? CustomFullState(
+                  child: Lottie.asset(
+                    JsonAssets.loading,
+                  ),
+                )
+              : controller.isErrorState.value
+                  ? SingleChildScrollView(
+                      child: CustomFullState(
+                        child: Lottie.asset(
+                          JsonAssets.error,
+                        ),
+                      ),
+                    )
+                  : CustomAttendanceListView(
+                      attendanceReportList: controller.attendanceReportList,
+                    ),
+        ),
       ),
     );
   }
+}
+
+class CustomAttendanceListView extends StatelessWidget {
+  const CustomAttendanceListView({
+    super.key,
+    required this.attendanceReportList,
+  });
+  final List<Attendance> attendanceReportList;
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.p20,
+            vertical: AppPadding.p20,
+          ),
+          sliver: SliverList.builder(
+            itemCount: attendanceReportList.length,
+            itemBuilder: (_, index) {
+              final attendanceReport = attendanceReportList[index];
+              return GestureDetector(
+                onTap: () {
+                  Get.to(DummyPage());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppPadding.p2,
+                    vertical: AppPadding.p20,
+                  ),
+                  child: CustomRoundedContainer(
+                    height: AppSize.s80,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p16,
+                        vertical: AppPadding.p4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: ColorsManager.grey,
+                        borderRadius: BorderRadius.circular(
+                          AppSize.s16,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          CustomChip(
+                            width: AppSize.s150,
+                            child: Text(
+                              attendanceReport.dates,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          const MakeSpace(
+                            width: AppSize.s20,
+                          ),
+                          CustomChip(
+                            width: AppSize.s100,
+                            child: Text(
+                              attendanceReport.studentsPresent.length
+                                  .convertToCountableNumber(),
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class DummyPage extends StatelessWidget {
+  const DummyPage({super.key});
 
   @override
-  void dispose() {
-    _superAttendanceViewModel.dispose();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Dummy'),
+      ),
+    );
   }
 }
