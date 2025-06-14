@@ -19,7 +19,7 @@ void main() async {
 
   await initializeDateFormatting(AppConstants.defaultLocalLanguage, null);
 
-  await initAppModules();
+
 
   await InjectionContainer.init();
 

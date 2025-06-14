@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:menofia_military/app/di.dart';
 import 'package:menofia_military/presentation/splash/controller/splash_bindings.dart';
 import 'package:menofia_military/presentation/student/student_login/controller/student_login_bindings.dart';
 import 'package:menofia_military/presentation/student/student_login/view/student_login_view.dart';
 import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_bindings.dart';
-import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_controller.dart';
 import 'package:menofia_military/presentation/student/student_main/pages/student_qr/controller/student_qr_generator_bindings.dart';
 import 'package:menofia_military/presentation/student/student_main/view/student_main_view.dart';
-import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:menofia_military/presentation/splash/views/splash_view.dart';
 import 'package:menofia_military/presentation/super/super_login/controller/super_login_bindings.dart';
 import 'package:menofia_military/presentation/super/super_login/view/super_login_view.dart';
@@ -40,7 +37,7 @@ abstract class AppPages {
     GetPage(
       name: Routes.studentLoginRoute,
       page: () {
-        initStudentLoginModule();
+      
         return StudentLoginView();
       },
       binding: StudentLoginBindings(),
@@ -65,8 +62,8 @@ abstract class AppPages {
       page: () =>  SuperMainView(),
       bindings: [
         SuperAttendanceViewBindings(),
-        SuperScanViewBindings(),
         SuperMainViewBindings(),
+        SuperScanViewBindings(),
       ]
     ),
     GetPage(
