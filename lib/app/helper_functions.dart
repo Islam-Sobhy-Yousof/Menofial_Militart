@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:menofia_military/app/app_constants.dart';
-import 'package:menofia_military/app/extensions.dart';
-import 'package:menofia_military/presentation/resources/strings_manager.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
