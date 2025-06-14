@@ -3,19 +3,16 @@ import 'package:menofia_military/app/app_constants.dart';
 import 'package:menofia_military/presentation/common/state_renderer/state_renderer.dart';
 import 'package:menofia_military/presentation/resources/app_strings.dart';
 
-
 abstract class FlowState {
   StateRendererType get stateType;
   String get stateMessage;
-
 }
-
 
 class PopupLoadingState implements FlowState {
   final String message;
 
   PopupLoadingState({
-    this.message = AppStrings.loading,
+    this.message = StringsManager.loading,
   });
 
   @override
@@ -29,7 +26,7 @@ class FullScreenLoadingState implements FlowState {
   final String message;
 
   FullScreenLoadingState({
-    this.message = AppStrings.loading,
+    this.message = StringsManager.loading,
   });
 
   @override
@@ -39,23 +36,18 @@ class FullScreenLoadingState implements FlowState {
   StateRendererType get stateType => StateRendererType.fullScreenLoadingState;
 }
 
-class PopupErrorState implements FlowState  {
+class PopupErrorState implements FlowState {
   final String message;
-
 
   PopupErrorState({
     required this.message,
-
   });
   @override
   String get stateMessage => message;
 
   @override
   StateRendererType get stateType => StateRendererType.popupErrorState;
-  
-
 }
-
 
 class PopupSuccessState implements FlowState {
   final String message;
@@ -69,7 +61,6 @@ class PopupSuccessState implements FlowState {
   @override
   StateRendererType get stateType => StateRendererType.popupSuccessState;
 }
-
 
 class FullScreenErrorState implements FlowState {
   final String message;
@@ -128,16 +119,15 @@ extension FlowStateExtention on FlowState {
             stateRendererType: stateType,
             retryFunction: retryFunction,
           );
-
         }
-      case FullScreenEmptyState():{
-
-        return StateRenderer(
-          message: stateMessage,
-          stateRendererType: stateType,
-          retryFunction: retryFunction, 
-        );
-      }
+      case FullScreenEmptyState():
+        {
+          return StateRenderer(
+            message: stateMessage,
+            stateRendererType: stateType,
+            retryFunction: retryFunction,
+          );
+        }
 
       case PopupLoadingState():
         {
@@ -149,7 +139,7 @@ extension FlowStateExtention on FlowState {
           );
           return contentScreenWidget;
         }
-         case PopupSuccessState():
+      case PopupSuccessState():
         {
           dismissDialog(context: context);
           showPopup(

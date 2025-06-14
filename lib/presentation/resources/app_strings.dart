@@ -1,10 +1,12 @@
-abstract class AppStrings {
+abstract class StringsManager {
   // ───── Navigation & Routing ─────
   static const String noRouteFound = "Page not found.";
 
   // ───── Authentication ─────
   static const String registeredSuccessfully = "Account created.";
   static const String login = "تسجيل الدخول";
+  static const String studentsExams = "الإمتحانات";
+  static const String hiMessage = " أهلاً ";
   static const String noStudentsData = "لا يوجد طلاب مسجلون";
   static const String singleStudentData = "طالب واحد";
   static const String pairOfStudnetsData = "طالبان";
@@ -29,8 +31,8 @@ abstract class AppStrings {
 
   // ───── Validation Errors ─────
   static const String userNameError = "Username must be at least 4 characters.";
-  static const String emailError = "Invalid email address.";
-  static const String passwordError = "Password must be at least 6 characters.";
+  static const String emailError = "البريد الإلكتروني غير صحيح";
+  static const String passwordError = "لا يمكنك ترك حقل كلمة المرور فارغاً";
   static const String mobileNumberError = "Mobile number must be 10-15 digits.";
   static const String countryCodeError = "Invalid country code format.";
 

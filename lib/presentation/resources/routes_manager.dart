@@ -1,65 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:menofia_military/app/di.dart';
-import 'package:menofia_military/presentation/student_login/view/student_login_view.dart';
-import 'package:menofia_military/presentation/student_main/student_main_view.dart';
+import 'package:menofia_military/presentation/splash/controller/splash_bindings.dart';
+import 'package:menofia_military/presentation/student/student_login/controller/student_login_bindings.dart';
+import 'package:menofia_military/presentation/student/student_login/view/student_login_view.dart';
+import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_bindings.dart';
+import 'package:menofia_military/presentation/student/student_main/controller/student_main_view_controller.dart';
+import 'package:menofia_military/presentation/student/student_main/pages/student_qr/controller/student_qr_generator_bindings.dart';
+import 'package:menofia_military/presentation/student/student_main/view/student_main_view.dart';
 import 'package:menofia_military/presentation/resources/app_strings.dart';
 import 'package:menofia_military/presentation/splash/views/splash_view.dart';
-import 'package:menofia_military/presentation/super_login/view/super_login_view.dart';
-import 'package:menofia_military/presentation/super_main/pages/super_attendance_details/view/super_attendance_details_view.dart';
-import 'package:menofia_military/presentation/super_main/super_main_view.dart';
+import 'package:menofia_military/presentation/super/super_login/controller/super_login_bindings.dart';
+import 'package:menofia_military/presentation/super/super_login/view/super_login_view.dart';
+import 'package:menofia_military/presentation/super/super_main/pages/super_attendance_details/view/super_attendance_details_view.dart';
+import 'package:menofia_military/presentation/super/super_main/super_main_view.dart';
 
 abstract class Routes {
   static const String splashRoute = "/";
   static const String studentLoginRoute = "/studentLoginRoute";
   static const String superLoginRoute = "/superLoginRoute";
   static const String registerRoute = "/register";
+  static const String unknownRoute = "/unknownRoute";
 
   static const String studentMainRoute = "/studentMainRoute";
   static const String superMainRoute = "/superMainRoute";
   static const String superAttendanceDetails = "/superAttendanceDetails";
 }
 
-class RouteGenerator {
-  static Route<dynamic> getRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case Routes.splashRoute:
-        return MaterialPageRoute(builder: (_) => const SplashView());
-      case Routes.studentLoginRoute:
+abstract class AppPages {
+  static List<GetPage> pages = [
+    GetPage(
+      name: Routes.splashRoute,
+      page: () => const SplashView(),
+      binding: SplashBindings(),
+    ),
+    GetPage(
+      name: Routes.studentLoginRoute,
+      page: () {
         initStudentLoginModule();
-        return MaterialPageRoute(builder: (_) => const StudentLoginView());
-      case Routes.superLoginRoute:
-        initSuperLoginModule();
-        return MaterialPageRoute(builder: (_) => const SuperLoginView());
-      // case Routes.registerRoute:
-      //   // initRegisterModule();
-      //   return MaterialPageRoute(builder: (_) => const RegisterView());
+        return StudentLoginView();
+      },
+      binding: StudentLoginBindings(),
+    ),
+    GetPage(
+      name: Routes.superLoginRoute,
+      page: () => SuperLoginView(),
+      binding: SuperLoginBindings(),
+    ),
+    // Uncomment and implement RegisterView if needed
+    // GetPage(name: Routes.registerRoute, page: () => const RegisterView()),
+    GetPage(
+      name: Routes.studentMainRoute,
+      page: () => StudentMainView(),
+      bindings: [
+        StudentMainViewBindings(),
+        StudentQrGeneratorBindings(),
+      ],
+    ),
+    GetPage(
+      name: Routes.superMainRoute,
+      page: () => const SuperMainView(),
+    ),
+    GetPage(
+      name: Routes.superAttendanceDetails,
+      page: () => const SuperAttendanceDetailsView(),
+    ),
+  ];
 
-      case Routes.studentMainRoute:
-        initQRCodeModule();
-        return MaterialPageRoute(builder: (_) => const StudentMainView());
-
-      case Routes.superMainRoute:
-        initSuperMainModule();
-        return MaterialPageRoute(builder: (_) => const SuperMainView());
-
-      case Routes.superAttendanceDetails:
-        return MaterialPageRoute(
-          builder: (_) => const SuperAttendanceDetailsView(),
-        );
-      default:
-        return unDefinedRoute();
-    }
-  }
-
-  static Route<dynamic> unDefinedRoute() {
-    return MaterialPageRoute(
-        builder: (_) => Scaffold(
-              appBar: AppBar(
-                title: Text(AppStrings.noRouteFound),
-              ),
-              body: Center(
-                child: Text(AppStrings.noRouteFound),
-              ),
-            ));
+  static GetPage unknownRoute({required BuildContext context}) {
+    return GetPage(
+      name: Routes.superAttendanceDetails,
+      page: () => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Unknow Area',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+        body: Center(
+          child: Text(
+            'Unknow Area',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+      ),
+    );
   }
 }

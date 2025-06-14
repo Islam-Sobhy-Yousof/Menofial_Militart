@@ -12,46 +12,50 @@ bool validateEmail({
           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
       .hasMatch(email);
 }
-bool validateStudentID({required String studentID}){
+
+bool validateStudentID({required String studentID}) {
   final regex = RegExp(r'^[A-Za-z0-9]{20}$');
 
   return regex.hasMatch(studentID);
 }
 
-
-
-
-void showSweetSnackBar({required BuildContext context,required String message,bool  isFailure  = false,}){
+void showSweetSnackBar({
+  required BuildContext context,
+  required String message,
+  bool isFailure = false,
+}) {
   showTopSnackBar(
     Overlay.of(context),
-   _getCustomSnackBar(isFailure: isFailure,message: message),
-    
-    displayDuration: Duration(seconds: AppConstants.snackbarDisplayDuration,),
+    _getCustomSnackBar(isFailure: isFailure, message: message),
+    displayDuration: Duration(
+      seconds: AppConstants.snackbarDisplayDuration,
+    ),
   );
 }
 
-CustomSnackBar _getCustomSnackBar({required bool isFailure,required String message}){
-  if(isFailure) {
+CustomSnackBar _getCustomSnackBar(
+    {required bool isFailure, required String message}) {
+  if (isFailure) {
     return CustomSnackBar.error(
       message: message,
     );
   }
 
   return CustomSnackBar.info(
-      message: message,
-    );
+    message: message,
+  );
 }
 
-String convertToCountableNumber({required int number}){
-  if(number == 0){
-   return  AppStrings.noStudentsData;
+String convertToCountableNumber({required int number}) {
+  if (number == 0) {
+    return StringsManager.noStudentsData;
   }
   if (number == 1) {
-    return AppStrings.singleStudentData;
+    return StringsManager.singleStudentData;
   }
-   if (number == 2) {
-    return AppStrings.pairOfStudnetsData;
+  if (number == 2) {
+    return StringsManager.pairOfStudnetsData;
   }
 
-  return "${number.toString().toArabicNumbers()} ${AppStrings.multipleStudnetsData}";
+  return "${number.toString().toArabicNumbers()} ${StringsManager.multipleStudnetsData}";
 }

@@ -66,7 +66,7 @@ class StateRenderer extends StatelessWidget {
                 name: JsonAssets.error,
               ),
               RetryButton(
-                title: AppStrings.ok,
+                title: StringsManager.ok,
                 onPressed: () {
                   Navigator.of(context).pop();
                   retryFunction();
@@ -83,7 +83,7 @@ class StateRenderer extends StatelessWidget {
               name: JsonAssets.loading,
             ),
             StateRendererMessage(
-              message: AppStrings.loading,
+              message: StringsManager.loading,
             ),
           ],
         );
@@ -94,11 +94,11 @@ class StateRenderer extends StatelessWidget {
               name: JsonAssets.error,
             ),
             StateRendererMessage(
-              message: AppStrings.fullscreenErrorMessage,
+              message: StringsManager.fullscreenErrorMessage,
             ),
             RetryButton(
-              title: AppStrings.retryAgain,
-              onPressed: (){
+              title: StringsManager.retryAgain,
+              onPressed: () {
                 retryFunction();
               },
               stateRendererType: stateRendererType,
@@ -112,7 +112,7 @@ class StateRenderer extends StatelessWidget {
               name: JsonAssets.empty,
             ),
             StateRendererMessage(
-              message: AppStrings.fullscreenEmptyMessage,
+              message: StringsManager.fullscreenEmptyMessage,
             ),
           ],
         );
@@ -127,7 +127,7 @@ class StateRenderer extends StatelessWidget {
               ),
               StateRendererMessage(message: message),
               RetryButton(
-                title: AppStrings.ok,
+                title: StringsManager.ok,
                 onPressed: () {
                   Navigator.of(context).pop();
                   retryFunction();
@@ -137,7 +137,6 @@ class StateRenderer extends StatelessWidget {
             ],
           ),
         );
-   
     }
   }
 }

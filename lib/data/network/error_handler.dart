@@ -19,36 +19,36 @@ class ErrorHandler implements Exception {
 Failure _handleGenericFirebaseError(FirebaseException error) {
   return Failure(
     code: ResponseCode.firebaseGenericError,
-    message: AppStrings.firebaseGenericError,
+    message: StringsManager.firebaseGenericError,
   );
 }
 
 Failure _handleFirebaseAuthError(FirebaseAuthException error) {
   switch (error.code) {
-    case AppStrings.firebaseInvalidEmailCode:
+    case StringsManager.firebaseInvalidEmailCode:
       return DataSource.firebaseInvalidEmail.getFailure();
-    case AppStrings.firebaseUserDisabledCode:
+    case StringsManager.firebaseUserDisabledCode:
       return DataSource.firebaseUserDisabled.getFailure();
-    case AppStrings.firebaseUserNotFoundCode:
+    case StringsManager.firebaseUserNotFoundCode:
       return DataSource.firebaseUserNotFound.getFailure();
-    case AppStrings.firebaseWrongPasswordCode:
+    case StringsManager.firebaseWrongPasswordCode:
       return DataSource.firebaseWrongPassword.getFailure();
-    case AppStrings.firebaseEmailAlreadyInUseCode:
+    case StringsManager.firebaseEmailAlreadyInUseCode:
       return DataSource.firebaseEmailAlreadyInUse.getFailure();
-    case AppStrings.firebaseWeakPasswordCode:
+    case StringsManager.firebaseWeakPasswordCode:
       return DataSource.firebaseWeakPassword.getFailure();
-    case AppStrings.firebaseOperationNotAllowedCode:
+    case StringsManager.firebaseOperationNotAllowedCode:
       return DataSource.firebaseOperationNotAllowed.getFailure();
-    case AppStrings.firebaseTooManyRequestsCode:
+    case StringsManager.firebaseTooManyRequestsCode:
       return DataSource.firebaseTooManyRequests.getFailure();
-    case AppStrings.firebaseNetworkErrorCode:
+    case StringsManager.firebaseNetworkErrorCode:
       return DataSource.firebaseNetworkError.getFailure();
-    case AppStrings.firebaseInvalidcredentialsCode:
+    case StringsManager.firebaseInvalidcredentialsCode:
       return DataSource.firebaseInvalidcredentialsCode.getFailure();
     default:
       return Failure(
         code: ResponseCode.firebaseUnknownError,
-        message: error.message ?? AppStrings.firebaseUnknownError,
+        message: error.message ?? StringsManager.firebaseUnknownError,
       );
   }
 }
@@ -77,53 +77,55 @@ extension DataSourceExtension on DataSource {
       case DataSource.firebaseUserNotFound:
         return Failure(
             code: ResponseCode.firebaseUserNotFound,
-            message: AppStrings.firebaseUserNotFound);
+            message: StringsManager.firebaseUserNotFound);
       case DataSource.firebaseWrongPassword:
         return Failure(
             code: ResponseCode.firebaseWrongPassword,
-            message: AppStrings.firebaseWrongPassword);
+            message: StringsManager.firebaseWrongPassword);
       case DataSource.firebaseEmailAlreadyInUse:
         return Failure(
             code: ResponseCode.firebaseEmailAlreadyInUse,
-            message: AppStrings.firebaseEmailAlreadyInUse);
+            message: StringsManager.firebaseEmailAlreadyInUse);
       case DataSource.firebaseInvalidEmail:
         return Failure(
             code: ResponseCode.firebaseInvalidEmail,
-            message: AppStrings.firebaseInvalidEmail);
+            message: StringsManager.firebaseInvalidEmail);
       case DataSource.firebaseWeakPassword:
         return Failure(
             code: ResponseCode.firebaseWeakPassword,
-            message: AppStrings.firebaseWeakPassword);
+            message: StringsManager.firebaseWeakPassword);
       case DataSource.firebaseNetworkError:
         return Failure(
             code: ResponseCode.firebaseNetworkError,
-            message: AppStrings.firebaseNetworkError);
+            message: StringsManager.firebaseNetworkError);
       case DataSource.firebaseTooManyRequests:
         return Failure(
             code: ResponseCode.firebaseTooManyRequests,
-            message: AppStrings.firebaseTooManyRequests);
+            message: StringsManager.firebaseTooManyRequests);
       case DataSource.firebaseUserDisabled:
         return Failure(
             code: ResponseCode.firebaseUserDisabled,
-            message: AppStrings.firebaseUserDisabled);
+            message: StringsManager.firebaseUserDisabled);
       case DataSource.firebaseOperationNotAllowed:
         return Failure(
             code: ResponseCode.firebaseOperationNotAllowed,
-            message: AppStrings.firebaseOperationNotAllowed);
+            message: StringsManager.firebaseOperationNotAllowed);
       case DataSource.noInternetConnection:
         return Failure(
             code: ResponseCode.noInternetConnection,
-            message: AppStrings.noInternetConnection);
+            message: StringsManager.noInternetConnection);
       case DataSource.notFoundError:
         return Failure(
-            code: ResponseCode.notFoundCode, message: AppStrings.notFoundError);
+            code: ResponseCode.notFoundCode,
+            message: StringsManager.notFoundError);
       case DataSource.firebaseInvalidcredentialsCode:
         return Failure(
             code: ResponseCode.firebaseInvalidcredentialsCode,
-            message: AppStrings.invalidCredsError);
+            message: StringsManager.invalidCredsError);
       default:
         return Failure(
-            code: ResponseCode.defaultError, message: AppStrings.defaultError);
+            code: ResponseCode.defaultError,
+            message: StringsManager.defaultError);
     }
   }
 }
